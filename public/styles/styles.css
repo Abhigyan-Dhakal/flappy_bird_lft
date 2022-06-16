@@ -1,0 +1,66 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.game-container {
+  height: 600px;
+  width: 340px;
+  border: 1px solid black;
+  background: url("../images/background-day.png");
+  /* background-color: red; */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+  overflow: hidden;
+}
+
+.floor {
+  height: 70px;
+  width: 100%;
+  position: absolute;
+  background-color: red;
+  bottom: 0px;
+  background: url("../images/base.png");
+  background-size: cover;
+  background-repeat: repeat-x;
+  animation: animatedFloor 6s linear infinite;
+  z-index: 2;
+}
+
+.starting-container {
+  height: 267px;
+  width: 184px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-image: url("../images/message.png");
+}
+
+.score-container {
+  position: absolute;
+  top: 20;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 3;
+}
+
+@keyframes animatedFloor {
+  0% {
+    background-position: 0 0;
+  }
+
+  100% {
+    background-position: -500px 0;
+  }
+}
