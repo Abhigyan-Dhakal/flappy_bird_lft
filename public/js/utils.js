@@ -1,3 +1,4 @@
+// Method to generate random integer
 const getRandomInt = (min, max) => {
   min = Math.ceil(min);
   max = Math.floor(max);

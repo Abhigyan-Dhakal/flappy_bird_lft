@@ -1,3 +1,4 @@
+// Global variables for the project
 let bird;
 let collision = false;
 let pipesArray = [];

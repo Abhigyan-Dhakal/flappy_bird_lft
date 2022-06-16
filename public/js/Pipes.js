@@ -4,7 +4,7 @@ class Pipes {
     this.bird = bird;
     this.container = container;
     this.pipeCount = -pipeCount;
-    this.pipePosX = 190 * this.pipeCount - 200;
+    this.pipePosX = PIPE_COLLISON_X_POS * this.pipeCount - 200;
     this.speed = PIPE_SPEED;
 
     // Method to create the pipes container and pipes
@@ -82,15 +82,19 @@ class Pipes {
       }
     };
 
+    // Method to create and fetch the high score
     this.handleScore = () => {
+      // Check if the highscore exists in the localsotrage and add incase it doesn't exist
       if (!localStorage.getItem("highscore")) {
         localStorage.setItem("highscore", score);
       } else {
+        // Fetch the previous highscore and compare it with current score
         let previousScore = localStorage.getItem("highscore");
         if (previousScore < score) {
           localStorage.setItem("highscore", score);
         }
       }
+      // Write the score and highscore to the specific element
       highScoreHeading.innerHTML = `High Score: ${localStorage.getItem(
         "highscore"
       )}`;

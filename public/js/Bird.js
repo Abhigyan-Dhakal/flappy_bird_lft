@@ -6,6 +6,7 @@ class Bird {
     this.gravity = BIRD_GRAVITY;
     this.jumpHeight = JUMP_HEIGHT;
     this.birdPosY = BIRD_START_POS_Y;
+    this.flapDuration = BIRD_FLAP_DURATION;
 
     // Method to create the bird
     this.createBird = () => {
@@ -33,7 +34,7 @@ class Bird {
         }
         this.bird.style.backgroundPosition = `0px ${this.wingState * -24}px`;
         this.wingState++;
-      }, 130);
+      }, this.flapDuration);
     };
 
     // Method to move the bird vertically i.e. Y-position
