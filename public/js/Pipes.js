@@ -2,7 +2,6 @@ class Pipes {
   constructor(container, pipeCount, bird) {
     this.pipePosY = getRandomInt(-220, 0);
     this.bird = bird;
-    console.log(this.bird);
     this.container = container;
     this.pipeCount = -pipeCount;
     this.pipePosX = 190 * this.pipeCount - 200;
@@ -37,7 +36,7 @@ class Pipes {
       this.bottomPipe = document.createElement("div");
     };
 
-    this.movePipes = (moveInterval) => {
+    this.movePipes = () => {
       this.pipePosX += this.speed;
       this.pipeContainer.style.right = `${this.pipePosX}px`;
       scoreHeading.innerHTML = `${score}`;
@@ -49,10 +48,10 @@ class Pipes {
       }
       if (this.pipePosX > PIPE_X_POS_THRES) {
       }
-      this.checkCollision(moveInterval);
+      this.checkCollision();
     };
 
-    this.checkCollision = (moveInterval) => {
+    this.checkCollision = () => {
       if (
         this.pipePosX > PIPE_COLLISON_X_POS + BIRD_WIDTH &&
         this.pipePosX < PIPE_COLLISON_X_POS + PIPE_WIDTH + BIRD_WIDTH
