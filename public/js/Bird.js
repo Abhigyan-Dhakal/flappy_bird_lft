@@ -7,23 +7,25 @@ class Bird {
     this.jumpHeight = JUMP_HEIGHT;
     this.birdPosY = BIRD_START_POS_Y;
 
+    // Method to create the bird
     this.createBird = () => {
       this.bird = document.createElement("div");
-      this.bird.style.height = "24px";
-      this.bird.style.width = "34px";
+      this.bird.style.height = `${BIRD_HEIGHT}px`;
+      this.bird.style.width = `${BIRD_WIDTH}px`;
       this.bird.style.overflow = "hidden";
       this.bird.style.position = "absolute";
-      this.bird.style.backgroundImage = "url(../images/birds.png)";
+      this.bird.style.backgroundImage = "url(./images/birds.png)";
       this.bird.style.backgroundRepeat = "no-repeat";
-      this.bird.style.right = "270px";
+      this.bird.style.right = `${BIRD_START_POS_X}px`;
       this.bird.style.top = "50%";
       this.bird.style.transform = "translateY(-50%)";
-      this.bird.style.zIndex = 1;
+      this.bird.style.zIndex = 3;
       this.bird.style.backgroundPosition = "0px 0px";
 
       this.container.appendChild(this.bird);
     };
 
+    // Method to animate bird's wing
     this.animateBirdWings = () => {
       setInterval(() => {
         if (this.wingState === 3) {
@@ -34,6 +36,7 @@ class Bird {
       }, 130);
     };
 
+    // Method to move the bird vertically i.e. Y-position
     this.moveBird = () => {
       this.speed += this.gravity;
       this.birdPosY += this.speed;
@@ -45,6 +48,7 @@ class Bird {
       this.speed = this.speed - this.jumpHeight;
     };
 
+    // Method to add jump event to the bird
     this.addJumpEvent = () => {
       document.addEventListener("keypress", (e) => {
         if (e.key == " " || e.code == "Space" || e.keyCode == 32) {

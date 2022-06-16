@@ -16,6 +16,10 @@ document.addEventListener("keypress", (e) => {
   }
 });
 
+restartBtn.addEventListener("click", () => {
+  window.location.reload(false);
+});
+
 bird = new Bird(container);
 bird.createBird();
 bird.addJumpEvent();
@@ -42,6 +46,7 @@ function runGame() {
       pipes.movePipes(moveInterval);
       if (collision === true) {
         clearInterval(moveInterval);
+        gameOverContainer.style.display = "block";
       }
     }, 1000 / 120);
   });

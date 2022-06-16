@@ -1,6 +1,10 @@
 const container = document.querySelector(".game-container");
 const startingContainer = document.querySelector(".starting-container");
 const scoreHeading = document.querySelector(".score-heading");
+const gameOverContainer = document.querySelector(".game-over-container");
+const highScoreHeading = document.querySelector(".high-score-heading");
+const currentScoreHeading = document.querySelector(".current-score-heading");
+const restartBtn = document.querySelector(".restart-btn");
 
 const PIPE_SPEED = 0.8;
 const PIPE_CONTAINER_HEIGHT = 600;
@@ -19,3 +23,4 @@ const FLOOR_POS_Y = 530;
 const BIRD_GRAVITY = 0.32;
 const JUMP_HEIGHT = 6.95;
 const BIRD_START_POS_Y = 253;
+const BIRD_START_POS_X = 270;

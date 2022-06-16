@@ -6,7 +6,10 @@ class Pipes {
     this.pipeCount = -pipeCount;
     this.pipePosX = 190 * this.pipeCount - 200;
     this.speed = PIPE_SPEED;
+
+    // Method to create the pipes container and pipes
     this.createPipes = () => {
+      // Creating pipe container for the pipes i.e. Top and Bottom Pipes
       this.pipeContainer = document.createElement("div");
       this.pipeContainer.style.position = "absolute";
       this.pipeContainer.style.height = `${PIPE_CONTAINER_HEIGHT}px`;
@@ -15,27 +18,30 @@ class Pipes {
       this.pipeContainer.style.top = `${this.pipePosY}px`;
       this.container.appendChild(this.pipeContainer);
 
+      // Creating top pipe
       this.topPipe = document.createElement("div");
       this.pipeContainer.appendChild(this.topPipe);
       this.topPipe.style.height = `${PIPE_HEIGHT}px`;
       this.topPipe.style.width = `${PIPE_WIDTH}px`;
-      this.topPipe.style.backgroundImage = "url(../images/pipe-green.png)";
+      this.topPipe.style.backgroundImage = "url(./images/pipe-green.png)";
       this.topPipe.style.position = "absolute";
       this.topPipe.style.left = "0px";
       this.topPipe.style.top = `$0px`;
       this.topPipe.style.transform = "rotate(180deg)";
 
+      // Creating Bottom pipe
       this.bottomPipe = document.createElement("div");
       this.pipeContainer.appendChild(this.bottomPipe);
       this.bottomPipe.style.height = `${PIPE_HEIGHT}px`;
       this.bottomPipe.style.width = `${PIPE_WIDTH}px`;
-      this.bottomPipe.style.backgroundImage = "url(../images/pipe-green.png)";
+      this.bottomPipe.style.backgroundImage = "url(./images/pipe-green.png)";
       this.bottomPipe.style.position = "absolute";
       this.bottomPipe.style.left = "0px";
       this.bottomPipe.style.top = `${PIPE_HEIGHT + PIPE_GAP}px`;
       this.bottomPipe = document.createElement("div");
     };
 
+    // Method to move the pipes horizontally
     this.movePipes = () => {
       this.pipePosX += this.speed;
       this.pipeContainer.style.right = `${this.pipePosX}px`;
@@ -51,6 +57,7 @@ class Pipes {
       this.checkCollision();
     };
 
+    // Method to check the collition of the bird object with the pipes
     this.checkCollision = () => {
       if (
         this.pipePosX > PIPE_COLLISON_X_POS + BIRD_WIDTH &&
@@ -63,14 +70,31 @@ class Pipes {
               this.pipePosY + PIPE_HEIGHT + PIPE_GAP - BIRD_HEIGHT
           )
         ) {
+          this.handleScore();
           collision = true;
           runningState = false;
         }
       }
       if (this.bird.birdPosY > FLOOR_POS_Y) {
+        this.handleScore();
         collision = true;
         runningState = false;
       }
+    };
+
+    this.handleScore = () => {
+      if (!localStorage.getItem("highscore")) {
+        localStorage.setItem("highscore", score);
+      } else {
+        let previousScore = localStorage.getItem("highscore");
+        if (previousScore < score) {
+          localStorage.setItem("highscore", score);
+        }
+      }
+      highScoreHeading.innerHTML = `High Score: ${localStorage.getItem(
+        "highscore"
+      )}`;
+      currentScoreHeading.innerHTML = `Current Score: ${score}`;
     };
   }
 }
